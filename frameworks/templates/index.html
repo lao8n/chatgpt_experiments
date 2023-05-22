@@ -2,18 +2,58 @@
 <html>
 <head>
     <title>Query Form</title>
+    <style>
+        .textbox {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .arrow {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 10px solid black;
+        }
+    </style>
 </head>
 <body>
-    <h1>Query Form</h1>
-    <form action="/query" method="post">
-        <label for="user_query">Enter your query:</label><br>
-        <input type="text" id="user_query" name="user_query"><br>
-        <input type="submit" value="Submit">
-    </form>
-    {% if query %}
-    <h2>Query: {{ query }}</h2>
-    <h3>Response 1: {{ response_1 }}</h3>
-    <h3>Response 2: {{ response_2 }}</h3>
-    {% endif %}
+    <div id="container">
+        <h1>Query Form</h1>
+        <form action="/query" method="post">
+            <label for="user_query">Enter your query:</label><br>
+            <input type="text" id="user_query" name="user_query"><br>
+            <input type="submit" value="Submit">
+        </form>
+        {% if query %}
+        <h2>Query: {{ query }}</h2>
+        {% for framework in frameworks %}
+        <div class="textbox">
+            <p>{{ framework }}</p>
+            <div class="arrow"></div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", function() {
+            var queryBox = document.getElementById("user_query");
+            var frameworkBoxes = document.getElementsByClassName("textbox");
+
+            for (var i = 0; i < frameworkBoxes.length; i++) {
+                var arrow = frameworkBoxes[i].querySelector(".arrow");
+                var frameworkBoxRect = frameworkBoxes[i].getBoundingClientRect();
+                var queryBoxRect = queryBox.getBoundingClientRect();
+
+                var arrowX = (frameworkBoxRect.left + frameworkBoxRect.right) / 2;
+                var arrowY = queryBoxRect.bottom;
+
+                arrow.style.left = arrowX + "px";
+                arrow.style.top = arrowY + "px";
+            }
+        });
+    </script>
 </body>
 </html>
