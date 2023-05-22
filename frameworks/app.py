@@ -19,7 +19,6 @@ def query():
             {"role": "system", "content": "Use a list of frameworks to analyse" + user_query},
         ]
     )
-
     frameworks = response_1.choices[0].message.content.strip().split("\n")
     frameworks = [f for f in frameworks[1:-1] if f != '']
     print(frameworks)
