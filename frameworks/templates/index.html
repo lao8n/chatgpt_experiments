@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Query Form</title>
+</head>
+<body>
+    <h1>Query Form</h1>
+    <form action="/query" method="post">
+        <label for="user_query">Enter your query:</label><br>
+        <input type="text" id="user_query" name="user_query"><br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if query %}
+    <h2>Query: {{ query }}</h2>
+    <h3>Response 1: {{ response_1 }}</h3>
+    <h3>Response 2: {{ response_2 }}</h3>
+    {% endif %}
+</body>
+</html>
