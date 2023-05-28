@@ -12,7 +12,7 @@ def index():
 def query():
     user_query = request.form['user_query']
 
-     # Generate responses using ChatGPT
+    # Generate responses using ChatGPT
     response_1 = openai.ChatCompletion.create(
         model='gpt-3.5-turbo',  # Replace with your ChatGPT model ID
         messages=[

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Query Form</title>
+    <style>
+        .textbox {
+            margin: 10px;
+            display: inline-block;
+            border: 1px solid #000;
+            padding: 10px;
+        }
+        .frameworks {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 30px;
+        }
+        .frameworks::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            border-top: 2px solid #000;
+            top: -15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Query Form</h1>
+    <form action="/query" method="post">
+        <label for="user_query">Enter your query:</label><br>
+        <input type="text" id="user_query" name="user_query"><br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if query %}
+    <h2>Query: {{ query }}</h2>
+    <div class="frameworks">
+        {% for framework in frameworks %}
+        <div class="textbox">
+            <p>{{ framework }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>
