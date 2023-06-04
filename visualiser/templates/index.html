@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-color: black;
+    }
+    .point {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: white;
+      position: absolute;
+    }
+    #topic-bar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <input id="topic-bar" type="text" placeholder="Enter a topic...">
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.get("/data", function(data) {
+        for (var i = 0; i < data.length; i++) {
+          var point = $("<div></div>")
+            .addClass("point")
+            .attr("title", data[i].name)
+            .css({
+              top: data[i].y * $(window).height(),
+              left: data[i].x * $(window).width(),
+            });
+          $("body").append(point);
+        }
+      });
+    });
+  </script>
+   <!-- Display the name of the framework when the mouse hovers over it in white text-->
+    <script>
+        $(document).ready(function() {
+        $.get("/data", function(data) {
+            for (var i = 0; i < data.length; i++) {
+            var point = $("<div></div>")
+                .addClass("point")
+                .attr("title", data[i].name)
+                .css({
+                top: data[i].y * $(window).height(),
+                left: data[i].x * $(window).width(),
+                });
+            $("body").append(point);
+            }
+        });
+        });
+    </script>
+</body>
+</html>
