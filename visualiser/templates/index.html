@@ -27,10 +27,11 @@
     <p id="modal-text"></p>
   </div>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
   <!-- Create a point for each framework-->
   <script>
     $(document).ready(function() {
-      $.get("/data", function(data) {
+      $.get("/framework-data", function(data) {
         for (var i = 0; i < data.length; i++) {
           var point = $("<div></div>")
             .addClass("point")
@@ -55,13 +56,35 @@
     });
   </script>
 
+  <!-- Create text a cluster at the centre of each-->
+  <script>
+    $(document).ready(function() {
+      $.get("/cluster-data", function(data) {
+        for (var i = 0; i < data.length; i++) {
+          text = $("<div></div>")
+            .addClass("cluster-name")
+            .css({
+                color: 'white',
+                position: "absolute",
+                top: data[i].y * $(window).height(),
+                left: data[i].x * $(window).width(),
+                fontWeight: 'bold',
+                fontSize: '16px'
+            })
+            .text(data[i].type); 
+          $("body").append(text);
+        }
+      });
+    });
+  </script>
+
   <!-- when the user clicks on a point, display the body of the text in a popup-->
   <script>
     $(document).ready(function() {
       $("body").on('click', ".point", function() {
         var name = $(this).attr("title");
         console.log(name)
-        $.get("/data", function(data) {
+        $.get("/framework-data", function(data) {
           for (var i = 0; i < data.length; i++) {
             if (data[i].name == name) {
               console.log(data[i].body); 
