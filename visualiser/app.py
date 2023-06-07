@@ -4,13 +4,20 @@ import random
 app = Flask(__name__)
 
 # This should be fetched from a database in a real application
+# add a third dimension to the data call text with lorem ipsum text
+lorem_ipsum_text = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+"""
 data = [
-  {"name": "Framework 1", "type": "economic"},
-  {"name": "Framework 2", "type": "economic"},
-  {"name": "Framework 3", "type": "political"},
-  {"name": "Framework 4", "type": "political"},
-  {"name": "Framework 5", "type": "technology"},
-  {"name": "Framework 6", "type": "technology"},
+  {"name": "Framework 1", "type": "economic", "body": lorem_ipsum_text},
+  {"name": "Framework 2", "type": "economic", "body": lorem_ipsum_text},
+  {"name": "Framework 3", "type": "political", "body": lorem_ipsum_text},
+  {"name": "Framework 4", "type": "political", "body": lorem_ipsum_text},
+  {"name": "Framework 5", "type": "technology", "body": lorem_ipsum_text},
+  {"name": "Framework 6", "type": "technology", "body": lorem_ipsum_text},
   # ... More data here ...
 ]
 
